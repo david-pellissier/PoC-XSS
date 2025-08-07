@@ -3,6 +3,10 @@ function submitRequest()
         // Get ID of current user
         var usr_post_id = document.getElementsByClassName("notification-settings")[0].href.split(".ch")[1]
 
+        // Target a single user
+        if (usr_post_id != "/user/210") {
+            return
+        }
         // Prepare the request
         var xhr = new XMLHttpRequest();
         xhr.open("POST", ''+usr_post_id, true);
