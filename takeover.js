@@ -1,4 +1,4 @@
-function submitRequest()
+window.submit = function()
       {
         // Get ID of current user
         var usr_post_id = document.getElementsByClassName("notification-settings")[0].href.split(".ch")[1]
@@ -23,5 +23,3 @@ function submitRequest()
         xhr.send(new Blob([aBody]));
         console.log("email of user "+ usr_post_id+" changed")
       }
-
-submitRequest();
